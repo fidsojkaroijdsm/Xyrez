@@ -1,0 +1,570 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.head h4 {
+    color: #f0f0f0;
+    font-size: 36px;
+    font-family: 'Poppins', serif;
+    text-align: center;
+    animation: head_Load 2s;
+}
+
+@keyframes head_Load {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.under_line {
+    width: 60px;
+    height: 3px;
+    background-color: #b0b0b0;
+    margin: 0 auto 30px;
+    animation: under_load 2s;
+}
+
+@keyframes under_load {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.main_box {
+    width: 900px;
+    height: 450px;
+    background-color: #1E1E1E;
+    border: 1px solid #333;
+    border-radius: 7px;
+    position: relative;
+}
+
+/* Status Box */
+.status_box {
+    width: 95%;
+    height: 40px;
+    background-color: #252525;
+    border: 2px solid #333;
+    border-radius: 5px;
+    margin: 20px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.status_info {
+    display: flex;
+    align-items: center;
+}
+
+.status_box img {
+    height: 20px;
+    margin-right: 10px;
+    filter: brightness(0.8);
+}
+
+.status_box h4 {
+    font-size: 18px;
+    color: #bbb;
+    font-family: 'Roboto', sans-serif;
+}
+
+.execute {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.execute:hover {
+    background-color: #333;
+}
+
+.editor_ux {
+    width: 95%;
+    height: 350px;
+    background-color: #181818;
+    border-radius: 5px;
+    margin: 20px auto;
+}
+
+.inside_ux {
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    margin: 10px;
+    background-color: transparent;
+}
+
+/* Sliding Menu */
+.menu {
+    width: 130px;
+    height: 350px;
+    background-color: #212121;
+    border-radius: 8px;
+    border: 2px solid #333;
+    position: absolute;
+    top: 50%;
+    left: -150px;
+    transform: translateY(-50%);
+}
+
+.menu img {
+    width: 50px;
+    margin: 30px auto;
+    display: block;
+    transition: 0.2s;
+}
+
+.menu img:hover {
+    opacity: 0.6;
+}
+
+/* Script Hub Button */
+#scriptHubButton {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    background-color: #3b3b3b;
+    color: #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+#scriptHubButton:hover {
+    background-color: #474747;
+}
+
+/* Script Hub Menu */
+.scriptHubMenu {
+    position: fixed;
+    top: 0;
+    right: -800px;
+    width: 800px;
+    height: 100%;
+    background-color: #1b1c22;
+    transition: right 0.5s ease;
+    z-index: 999;
+    overflow-y: auto;
+}
+
+.scriptHubMenu.open {
+    right: 0;
+}
+
+.menu_content {
+    padding: 20px;
+    color: #d0d0d0;
+}
+
+/* Overlay for Menu */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 998;
+}
+
+.overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Menu Items */
+.menu_item {
+    background-color: #252525;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    width: 350px;
+    margin: 10px auto;
+    transition: transform 0.2s;
+}
+
+.menu_item:hover {
+    transform: translateY(-10px);
+}
+
+.menu_item img {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+}
+
+.script_title {
+    font-size: 22px;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+button {
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.copy_btn {
+    background-color: #388e3c;
+    color: #fff;
+}
+
+.insert_btn {
+    background-color: #1976d2;
+    color: #fff;
+}
+
+.copy_btn:hover {
+    background-color: #43a047;
+}
+
+.insert_btn:hover {
+    background-color: #1e88e5;
+}
+
+.scripthub_button {
+    margin-top: 50px;
+    background-color: #d84315;
+    color: #e0e0e0;
+    padding: 16px 40px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.scripthub_button:hover {
+    background-color: #bf360c;
+}
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.head h4 {
+    color: #f0f0f0;
+    font-size: 36px;
+    font-family: 'Poppins', serif;
+    text-align: center;
+    animation: head_Load 2s;
+}
+
+@keyframes head_Load {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.under_line {
+    width: 60px;
+    height: 3px;
+    background-color: #b0b0b0;
+    margin: 0 auto 30px;
+    animation: under_load 2s;
+}
+
+@keyframes under_load {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.main_box {
+    width: 900px;
+    height: 450px;
+    background-color: #1E1E1E;
+    border: 1px solid #333;
+    border-radius: 7px;
+    position: relative;
+}
+
+/* Status Box */
+.status_box {
+    width: 95%;
+    height: 40px;
+    background-color: #252525;
+    border: 2px solid #333;
+    border-radius: 5px;
+    margin: 20px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.status_info {
+    display: flex;
+    align-items: center;
+}
+
+.status_box img {
+    height: 20px;
+    margin-right: 10px;
+    filter: brightness(0.8);
+}
+
+.status_box h4 {
+    font-size: 18px;
+    color: #bbb;
+    font-family: 'Roboto', sans-serif;
+}
+
+.execute {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.execute:hover {
+    background-color: #333;
+}
+
+.editor_ux {
+    width: 95%;
+    height: 350px;
+    background-color: #181818;
+    border-radius: 5px;
+    margin: 20px auto;
+}
+
+.inside_ux {
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    margin: 10px;
+    background-color: transparent;
+}
+
+/* Sliding Menu */
+.menu {
+    width: 130px;
+    height: 350px;
+    background-color: #212121;
+    border-radius: 8px;
+    border: 2px solid #333;
+    position: absolute;
+    top: 50%;
+    left: -150px;
+    transform: translateY(-50%);
+}
+
+.menu img {
+    width: 50px;
+    margin: 30px auto;
+    display: block;
+    transition: 0.2s;
+}
+
+.menu img:hover {
+    opacity: 0.6;
+}
+
+/* Script Hub Button */
+#scriptHubButton {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    background-color: #3b3b3b;
+    color: #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+#scriptHubButton:hover {
+    background-color: #474747;
+}
+
+/* Script Hub Menu */
+.scriptHubMenu {
+    position: fixed;
+    top: 0;
+    right: -800px;
+    width: 800px;
+    height: 100%;
+    background-color: #1b1c22;
+    transition: right 0.5s ease;
+    z-index: 999;
+    overflow-y: auto;
+}
+
+.scriptHubMenu.open {
+    right: 0;
+}
+
+.menu_content {
+    padding: 20px;
+    color: #d0d0d0;
+}
+
+/* Overlay for Menu */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 998;
+}
+
+.overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Menu Items */
+.menu_item {
+    background-color: #252525;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    width: 350px;
+    margin: 10px auto;
+    transition: transform 0.2s;
+}
+
+.menu_item:hover {
+    transform: translateY(-10px);
+}
+
+.menu_item img {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+}
+
+.script_title {
+    font-size: 22px;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+button {
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.copy_btn {
+    background-color: #388e3c;
+    color: #fff;
+}
+
+.insert_btn {
+    background-color: #1976d2;
+    color: #fff;
+}
+
+.copy_btn:hover {
+    background-color: #43a047;
+}
+
+.insert_btn:hover {
+    background-color: #1e88e5;
+}
+
+.scripthub_button {
+    margin-top: 50px;
+    background-color: #d84315;
+    color: #e0e0e0;
+    padding: 16px 40px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.scripthub_button:hover {
+    background-color: #bf360c;
+}
